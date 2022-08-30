@@ -88,7 +88,7 @@ func (jr Resolver) Resolve(c *config.Config, ix *resolve.RuleIndex, rc *repo.Rem
 	if packageConfig == nil {
 		jr.lang.logger.Fatal().Msg("failed retrieving package config")
 	}
-	isTestRule := isTestRule(r.Kind())
+	isTestRule := packageConfig.IsTestRule(r.Kind())
 
 	jr.populateAttr(c, packageConfig, r, "deps", resolveInput.ImportedPackageNames, ix, isTestRule, from, resolveInput.PackageNames)
 	jr.populateAttr(c, packageConfig, r, "exports", resolveInput.ExportedPackageNames, ix, isTestRule, from, resolveInput.PackageNames)
